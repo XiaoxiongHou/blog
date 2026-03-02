@@ -2,7 +2,13 @@
 
 ## agent技术在LLM应用范式的分级
 
-![image-20260228093515285](http://image.huawei.com/tiny-lts/v1/images/hi3ms/3e9ddad2aff83325e52b2f09ad7d9a0c_973x519.png)
+| LLM应用范式分级 | 人工参与程度                                         | AI参与程度                               | 示例                       |
+| --------------- | ---------------------------------------------------- | ---------------------------------------- | -------------------------- |
+| L1 无LLM        | 95%                                                  | 5% 非LLM的传统AI辅助参与                 |                            |
+| L2 ChatBot      | 80%~90% 提问                                         | 10%~20% 根据提问给出信息                 | ChatGPT/AskAl/GenieAl      |
+| L3 Copilot      | 50% 给出Prompt/修改Prompt                            | 50% 根据Prompt给出初稿并优化             | GitHub/Copilot/MidJourney  |
+| L4 Agent        | 20% 给出初始目标，监督过程、评估结果，提供接口等资源 | 80% 自主完成任务分解，选择工具，自我迭代 | HuggingGPT/AutoGPT/BabyGPT |
+| L5 AGI          | 给出目标                                             | 根据目标自主完成所有工作                 | 冯诺依曼机器人             |
 
 ##　agent技术的发展
 
@@ -106,4 +112,5 @@ token：自然语言里最小单元是汉字/单词；LLM里最小单元是token
 hidden prompt：app会对用户的prompt进行一层封装，添加一些隐形提示词，达到补全/限制等作用。
 
 prompt工程参数：
+
 
