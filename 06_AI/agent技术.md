@@ -130,7 +130,31 @@ Tools -[dashed,#gray]-> Action
 
 阶段三、接口标准化（MCP，模型上下文协议）根据标准接口开发，可自动检索API市场，自动调用，C/S模式
 
-![image-20260228110020921](http://image.huawei.com/tiny-lts/v1/images/hi3ms/8d7431b3097be9fc7de757133439bb6b_1535x819.png)
+MCP 工作流示例
+
+```mermaid
+graph LR
+    A[MCP Host] --> B[MCP Client]
+    B --> C{资源发现}
+    C -->|ListResources| D[MCP Server 1]
+    C -->|ListResources| E[MCP Server 2]
+    B --> F[LLM]
+    F --> G[生成工具调用]
+    G --> H[ExecuteTool]
+    H --> D
+    H --> E
+```
+
+Function Calling 工作流示例
+
+```mermaid
+graph LR
+    A[App] --> B[定义函数 Schema]
+    B --> C[LLM]
+    C --> D[解析函数调用]
+    D --> E[本地执行函数]
+    E --> A
+```
 
 长远看MCP和FunctionCall会共存，模型资源壁垒，性能问题
 
