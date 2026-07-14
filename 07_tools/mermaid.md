@@ -158,41 +158,100 @@ gantt
 ```markdown
 ```mermaid
 classDiagram
-    [类名] --> [关联类]
-    [类名] : +属性1
-    [类名] : -方法1()
+class Class1 {
+	- privateField
+	+ publicField
+	# protectedField
+	field
+	- PrivateMethod()
+	+ PublicMethod()
+	# ProtectedMethod()
+	Method()
+}
+class Interface1 {
+	<<interface>>
+	Method()
+}
 ```
 
-- **类**：用 `class` 定义，支持继承（`<|--`）和组合（`*--`）。
-- **属性/方法**：`+`（public）、`-`（private）、`#`（protected）。
+**类间关系**：
+
+| 关系 | 图                                              | mermaid       |
+| ---- | ----------------------------------------------- | ------------- |
+| 依赖 | Driver┉>Car                                     | `..>`, `..`   |
+| 关联 | Customer─>Address，Teacher 1──n Student，自关联 | `-->`, `--`   |
+| 聚合 | Car◇─>Engine                                    | `o--`, `o-->` |
+| 组合 | Bird◆─>Wing                                     | `*--`, `*-->` |
+| 实现 | Class┉▷Interface                                | `..|>`        |
+| 继承 | Child━▷Parent                                   | `--|>`        |
 
 **示例**：
 
 ```markdown
 ```mermaid
 classDiagram
-    Animal <|-- Dog
-    Animal <|-- Cat
-    Dog "1" *-- "多个" Bone
-    Cat "1" *-- "多个" Toy
-    Animal : +name: String
-    Animal : +makeSound()
-    Dog : +bark()
-    Cat : +meow()
+class ShapeFactory {
+	+CreateShape()
+}
+class CircleFactory {
+	+CreateShape()
+}
+class RectangleFactory {
+	+CreateShape()
+}
+ShapeFactory <|--  CircleFactory
+ShapeFactory <|-- RectangleFactory
+
+class Shape {
+<<interface>>
+	+Draw()
+}
+
+class Circle {
+	+Draw()
+}
+class Rectangle {
+	+Draw()
+}
+Shape <|.. Circle
+Shape <|.. Rectangle
+
+ShapeFactory ..> Shape
+
 ```
 
 **效果**：
 
 ```mermaid
 classDiagram
-    Animal <|-- Dog
-    Animal <|-- Cat
-    Dog "1" *-- "multiple" Bone
-    Cat "1" *-- "multiple" Toy
-    Animal : +name: String
-    Animal : +makeSound()
-    Dog : +bark()
-    Cat : +meow()
+class ShapeFactory {
+	+CreateShape()
+}
+class CircleFactory {
+	+CreateShape()
+}
+class RectangleFactory {
+	+CreateShape()
+}
+ShapeFactory <|--  CircleFactory
+ShapeFactory <|-- RectangleFactory
+
+class Shape {
+<<interface>>
+	+Draw()
+}
+
+class Circle {
+	+Draw()
+}
+class Rectangle {
+	+Draw()
+}
+Shape <|.. Circle
+Shape <|.. Rectangle
+
+ShapeFactory ..> Shape
+
 ```
 
 ---
