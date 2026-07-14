@@ -18,7 +18,79 @@
 
 ##　AI Agent定义
 
-![image-20260228100113514](http://image.huawei.com/tiny-lts/v1/images/hi3ms/3755dbb5e716963b1646ce6d7d82f8b5_1043x562.png)
+```plantuml
+@startuml
+skinparam defaultTextAlignment center
+left to right direction
+
+' 中心节点
+rectangle "Agent" as Agent #f9d5d5
+rectangle "Memory" as Memory #f0f0f0
+rectangle "Planning" as Planning #f0f0f0
+rectangle "Action" as Action #f0f0f0
+rectangle "Tools" as Tools #f0f0f0
+
+' 记忆子系统
+rectangle "Short-term memory" as ShortTerm #f0f0f0
+rectangle "Long-term memory" as LongTerm #f0f0f0
+
+' 工具列表
+rectangle "Calendar ()" as Calendar #f0f0f0
+rectangle "Calculator ()" as Calculator #f0f0f0
+rectangle "CodeInterpreter ()" as CodeInterpreter #f0f0f0
+rectangle "Search ()" as Search #f0f0f0
+rectangle "...more" as MoreTools #f0f0f0
+
+' 规划子系统
+rectangle "Reflection" as Reflection #f0f0f0
+rectangle "Self-critics" as SelfCritics #f0f0f0
+rectangle "Chain of thoughts" as ChainOfThoughts #f0f0f0
+rectangle "Subgoal decomposition" as SubgoalDecomposition #f0f0f0
+
+' 连接关系
+' Agent 与 Memory
+Agent --> Memory
+' Agent 与 Planning
+Agent --> Planning
+' Agent 与 Action
+Agent --> Action
+' Action 与 Tools
+Agent --> Tools
+
+' Tools 与具体工具
+Tools --> Calendar
+Tools --> Calculator
+Tools --> CodeInterpreter
+Tools --> Search
+Tools --> MoreTools
+
+' Memory 与短期/长期记忆
+Memory --> ShortTerm
+Memory --> LongTerm
+
+' Planning 与规划子系统
+Planning --> Reflection
+Planning --> SelfCritics
+Planning --> ChainOfThoughts
+Planning --> SubgoalDecomposition
+
+' 反馈循环
+Memory -[dashed,#gray]-> Planning
+Memory -[dashed,#gray]-> Reflection
+
+' 工具与 Action 的反馈
+Tools -[dashed,#gray]-> Action
+
+@enduml
+
+```
+
+- 百度的定义 以大语言模型为大脑驱动的系统，具备自主理解、感知、规划、记忆和使用工具的能力，能够自动化执行完 成复杂任务的系统 
+
+- 学术界的定义 Agent需要拥有记忆、工具、计划能力、执行能力等，主要用于自主完成任务，定义较为广泛。 
+
+- OpenAl的定义 不直接称呼Agent概念，在OpenAl 2023/11发布会上发布Assistant，定义为具备知识库与工具的个人助理，但 实现逻辑本质也是Agent。
+
 
 智能体 = 环境感知 + LLMs + 规划 + 记忆 + 工具，即人类的 五感接收信息+大脑思考+四肢执行。
 
