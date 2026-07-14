@@ -179,7 +179,9 @@ graph LR
 - NL2SQL。使用自然语言进行数据库查询检索。
 - Code Interpreter。代码解释器。
 
-![image-20260228155534200](http://image.huawei.com/tiny-lts/v1/images/hi3ms/3f3c5130a26db3f3437e4a89be673bad_1500x758.png)
+Code Interpreter可以对文件进行处理，通过代码运行，降低了幻觉和迷感的概率。 
+
+Code Interpreter让 Al 的用途更加广泛，用户不必过多"编程”。
 
 ## Agent派别
 
