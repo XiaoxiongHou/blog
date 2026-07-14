@@ -1,3 +1,11 @@
+# typora安装plantuml插件
+
+TYPORA是一个很好用的可见即所得的MARKDOWN编辑器，但是其原生不支持PLANTUML，导致其他人的写作PLANTUML不能在TYPORA阅读
+
+解压到typora的安装目录的resources，参考教程即可 https://github.com/obgnail/typora_plugin
+
+安装后要配置plantuml服务器。PLANTUML是一个远端渲染的B/S架构，我们安装TYPORA插件只是客户端发起请求的能力。
+
 # 流程图
 
 ```plantuml
