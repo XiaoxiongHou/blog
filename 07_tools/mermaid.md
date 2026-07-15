@@ -30,37 +30,51 @@ Mermaid 支持多种图表类型，以下是常见图表的语法和示例：
 
 **语法结构**：
 
-```markdown
+````markdown
 ```mermaid
 graph [方向]
     [节点A] --> [节点B]
     [节点B] --> [节点C]
 ```
+````
 
 - **方向**：`TD`（Top → Down）、`LR`（Left → Right）、`RL`（Right → Left）、`BT`（Bottom → Top）。
 - **节点**：用方括号 `[]` 包裹，支持文字、链接、样式。
 
 **示例**：
 
-```markdown
+````markdown
 ```mermaid
 graph TD
-    A[开始] --> B{条件?}
-    B -->|是| C[操作1]
-    B -->|否| D[操作2]
-    C --> E[结束]
-    D --> E
+    %% 注意观察不同线型和节点形状的定义
+
+    A[方框] -->|带箭头实线| B([圆角矩形])
+    A ---|实线| B
+
+    A -.->|带箭头虚线| C{判断}
+    A -.-|虚线| O((圆形))
+    O --> O --> F[/平行四边形/] --> G[[子过程]]
+
+    C ==>|带箭头加粗实线| D>信号]
+    C ===|加粗实线| E[(存储)]
 ```
+````
 
 **效果**：
 
 ```mermaid
 graph TD
-    A[开始] --> B{条件?}
-    B -->|是| C[操作1]
-    B -->|否| D[操作2]
-    C --> E[结束]
-    D --> E
+    %% 注意观察不同线型和节点形状的定义
+
+    A[方框] -->|带箭头实线| B([圆角矩形])
+    A ---|实线| B
+
+    A -.->|带箭头虚线| C{判断}
+    A -.-|虚线| O((圆形))
+    O --> O --> F[/平行四边形/] --> G[[子过程]]
+
+    C ==>|带箭头加粗实线| D>信号]
+    C ===|加粗实线| E[(存储)]
 ```
 
 ---
@@ -69,35 +83,69 @@ graph TD
 
 **语法结构**：
 
-```markdown
+````markdown
 ```mermaid
 sequenceDiagram
     [参与者A] ->> [参与者B]: 消息1
     [参与者B] --> [参与者A]: 消息2
 ```
+````
 
 - **参与者**：用 `actor` 或直接命名。
 - **消息**：`->>`（实线箭头）、`-->`（虚线箭头）、`-`（激活条）。
 
 **示例**：
 
-```markdown
+````markdown
 ```mermaid
 sequenceDiagram
-    Alice ->> Bob: 你好
-    Bob --> Alice: 你好，收到
-    Alice ->> Bob: 请执行任务
-    Bob --> Alice: 任务完成
+    %% participant可选，用于指定顺序
+    participant A
+    participant B
+
+    A->B: 无箭头的实线
+    A-->B: 无箭头的虚线
+    A->>B: 带实心箭头的实线（消息发送）
+    A-->>B: 带实心箭头的虚线（消息返回）
+    A-xB: 带X的实线（消息丢失）
+    A--xB: 带X的虚线（返回消息丢失）
+
+    loop 每TTI
+        A->>B: 循环消息
+    end
+
+    alt 条件A
+        A->>B: 条件A
+    else Else
+        A->>B: 条件B
+    end
 ```
+````
 
 **效果**：
 
 ```mermaid
 sequenceDiagram
-    Alice ->> Bob: 你好
-    Bob --> Alice: 你好，收到
-    Alice ->> Bob: 请执行任务
-    Bob --> Alice: 任务完成
+    %% participant可选，用于指定顺序
+    participant A
+    participant B
+
+    A->B: 无箭头的实线
+    A-->B: 无箭头的虚线
+    A->>B: 带实心箭头的实线（消息发送）
+    A-->>B: 带实心箭头的虚线（消息返回）
+    A-xB: 带X的实线（消息丢失）
+    A--xB: 带X的虚线（返回消息丢失）
+
+    loop 每TTI
+        A->>B: 循环消息
+    end
+
+    alt 条件A
+        A->>B: 条件A
+    else Else
+        A->>B: 条件B
+    end
 ```
 
 ---
@@ -106,7 +154,7 @@ sequenceDiagram
 
 **语法结构**：
 
-```markdown
+````markdown
 ```mermaid
 gantt
     title 项目计划
@@ -115,13 +163,14 @@ gantt
     任务A :a1, 2023-01-01, 30d
     任务B :a2, after a1, 20d
 ```
+````
 
 - **时间格式**：`YYYY-MM-DD` 或 `YYYY-MM-DD HH:MM`。
 - **任务**：`任务名 :任务ID, 开始时间, 持续时间`。
 
 **示例**：
 
-```markdown
+````markdown
 ```mermaid
 gantt
     title 开发计划
@@ -133,6 +182,7 @@ gantt
     接口设计 :b1, 2023-10-01, 7d
     数据库开发 :b2, after b1, 8d
 ```
+````
 
 **效果**：
 
@@ -155,7 +205,7 @@ gantt
 
 **语法结构**：
 
-```markdown
+````markdown
 ```mermaid
 classDiagram
 class Class1 {
@@ -173,6 +223,7 @@ class Interface1 {
 	Method()
 }
 ```
+````
 
 **类间关系**：
 
@@ -187,7 +238,7 @@ class Interface1 {
 
 **示例**：
 
-```markdown
+````markdown
 ```mermaid
 classDiagram
 class ShapeFactory {
@@ -219,6 +270,7 @@ Shape <|.. Rectangle
 ShapeFactory ..> Shape
 
 ```
+````
 
 **效果**：
 
@@ -261,20 +313,21 @@ ShapeFactory ..> Shape
 
 **语法结构**：
 
-```markdown
+````markdown
 ```mermaid
 stateDiagram
     [*] --> 状态A
     状态A --> 状态B : 事件1
     状态B --> [*] : 事件2
 ```
+````
 
 - **状态**：用 `state` 定义。
 - **转换**：`状态A --> 状态B : 事件`。
 
 **示例**：
 
-```markdown
+````markdown
 ```mermaid
 stateDiagram
     [*] --> 就绪
@@ -283,6 +336,7 @@ stateDiagram
     挂起 --> 运行 : 资源恢复
     运行 --> [*] : 完成
 ```
+````
 
 **效果**：  
 ```mermaid
@@ -292,6 +346,30 @@ stateDiagram
     运行 --> 挂起 : 资源不足
     挂起 --> 运行 : 资源恢复
     运行 --> [*] : 完成
+```
+
+#### **6. 饼图（pie Diagram）**
+
+**示例**：
+````markdown
+```mermaid
+pie
+    title 性能开销
+    "业务处理": 42.96
+    "系统调用": 50.05
+    "报文编解码": 10.01
+    "基础库": 5
+```
+````
+
+**效果**：  
+```mermaid
+pie
+    title 性能开销
+    "业务处理": 42.96
+    "系统调用": 50.05
+    "报文编解码": 10.01
+    "基础库": 5
 ```
 
 ---
