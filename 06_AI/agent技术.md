@@ -18,71 +18,29 @@
 
 ##　AI Agent定义
 
-```plantuml
-@startuml
-skinparam defaultTextAlignment center
-left to right direction
+```mermaid
+graph LR
+    Agent[Agent] --> Memory[Memory]
+    Agent --> Planning[Planning]
+    Agent --> Action[Action]
+    Agent --> Tools[Tools]
 
-' 中心节点
-rectangle "Agent" as Agent #f9d5d5
-rectangle "Memory" as Memory #f0f0f0
-rectangle "Planning" as Planning #f0f0f0
-rectangle "Action" as Action #f0f0f0
-rectangle "Tools" as Tools #f0f0f0
-
-' 记忆子系统
-rectangle "Short-term memory" as ShortTerm #f0f0f0
-rectangle "Long-term memory" as LongTerm #f0f0f0
-
-' 工具列表
-rectangle "Calendar ()" as Calendar #f0f0f0
-rectangle "Calculator ()" as Calculator #f0f0f0
-rectangle "CodeInterpreter ()" as CodeInterpreter #f0f0f0
-rectangle "Search ()" as Search #f0f0f0
-rectangle "...more" as MoreTools #f0f0f0
-
-' 规划子系统
-rectangle "Reflection" as Reflection #f0f0f0
-rectangle "Self-critics" as SelfCritics #f0f0f0
-rectangle "Chain of thoughts" as ChainOfThoughts #f0f0f0
-rectangle "Subgoal decomposition" as SubgoalDecomposition #f0f0f0
-
-' 连接关系
-' Agent 与 Memory
-Agent --> Memory
-' Agent 与 Planning
-Agent --> Planning
-' Agent 与 Action
-Agent --> Action
-' Action 与 Tools
-Agent --> Tools
-
-' Tools 与具体工具
-Tools --> Calendar
-Tools --> Calculator
-Tools --> CodeInterpreter
-Tools --> Search
-Tools --> MoreTools
-
-' Memory 与短期/长期记忆
-Memory --> ShortTerm
-Memory --> LongTerm
-
-' Planning 与规划子系统
-Planning --> Reflection
-Planning --> SelfCritics
-Planning --> ChainOfThoughts
-Planning --> SubgoalDecomposition
-
-' 反馈循环
-Memory -[dashed,#gray]-> Planning
-Memory -[dashed,#gray]-> Reflection
-
-' 工具与 Action 的反馈
-Tools -[dashed,#gray]-> Action
-
-@enduml
-
+    Memory --> ShortTerm[Short-term memory]
+    Memory --> LongTerm[Long-term memory]
+    Memory -.-> Reflection
+    Memory -.-> Planning
+    
+    Planning --> Reflection[Reflection]
+    Planning --> SelfCritics[Self-critics]
+    Planning --> ChainOfThoughts[Chain of thoughts]
+    Planning --> SubgoalDecomposition[Subgoal decomposition]
+    
+    Tools -.-> Action
+    Tools --> Calendar[Calendar &#40&#41]
+    Tools --> Calculator[Calculator &#40&#41]
+    Tools --> CodeInterpreter[CodeInterpreter &#40&#41]
+    Tools --> Search[Search &#40&#41]
+    Tools --> More[...more]
 ```
 
 - 百度的定义 以大语言模型为大脑驱动的系统，具备自主理解、感知、规划、记忆和使用工具的能力，能够自动化执行完 成复杂任务的系统 
